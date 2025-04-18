@@ -1,13 +1,12 @@
 import { Component, NgModule } from '@angular/core'
 import { TaskService } from '../../services/task.service'
-import { NgModel, FormsModule } from '@angular/forms'
+import {  FormsModule } from '@angular/forms'
+import { NgIf } from '@angular/common'
 
 @Component({
   selector: 'app-search-bar',
   templateUrl: './search-bar.component.html',
-  imports: [
-    FormsModule,
-  ],
+  imports: [FormsModule, NgIf],
   styleUrls: ['./search-bar.component.scss']
 })
 export class SearchBarComponent {
