@@ -1,10 +1,16 @@
-import { Component } from '@angular/core'
+import { Component, NgModule } from '@angular/core'
 import { Task } from '../../models/task.model'
 import { TaskService } from '../../services/task.service'
+import { FormsModule } from '@angular/forms'
+import { NgIf, NgFor } from '@angular/common'
+
+
+
 
 @Component({
   selector: 'app-add-task',
   templateUrl: './add-task.component.html',
+  imports: [ FormsModule, NgIf, NgFor],
   styleUrls: ['./add-task.component.scss']
 })
 export class AddTaskComponent {
