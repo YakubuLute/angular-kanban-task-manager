@@ -1,1 +1,30 @@
-<p>task-card works!</p>
+<div class="task-card" [class]="getPriorityClass()">
+  <div class="task-header">
+    <h3 class="task-title">{{ task.title }}</h3>
+    <div class="task-actions">
+      <button class="icon-button edit">
+        <i class="material-icons">edit</i>
+      </button>
+      <button class="icon-button delete" (click)="deleteTask()">
+        <i class="material-icons">delete</i>
+      </button>
+    </div>
+  </div>
+
+  <p class="task-description">{{ task.description }}</p>
+
+  <div class="task-meta">
+    <div class="priority-badge" [class]="getPriorityClass()">
+      {{ task.priority }}
+    </div>
+
+    <div *ngIf="task.dueDate" class="due-date">
+      <i class="material-icons">event</i>
+      <span>{{ formatDate(task.dueDate) }}</span>
+    </div>
+  </div>
+
+  <div class="task-tags" *ngIf="task.tags && task.tags.length">
+    <span class="tag" *ngFor="let tag of task.tags">{{ tag }}</span>
+  </div>
+</div>
