@@ -1,6 +1,6 @@
 # Angular Task Management
 
-![Task Management App]()
+![Task Management App](src/assets/images/image.png)
 
 > A slick, modern task management application with intuitive drag-and-drop functionality built with Angular.
 

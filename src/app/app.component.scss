@@ -1,5 +1,5 @@
 :host {
-  font-family: 'Roboto', 'Segoe UI', sans-serif;
+  font-family: "Roboto", "Segoe UI", sans-serif;
   --primary-color: #7c4dff;
   --primary-dark: #6c3eef;
   --background-color: #f8f9fd;
@@ -47,4 +47,10 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 24px;
+}
+
+
+
+footer {
+  display: none;
 }
