@@ -1,11 +1,22 @@
-import { Component } from '@angular/core';
+import { Component } from '@angular/core'
+import { TaskService } from '../../services/task.service'
 
 @Component({
   selector: 'app-search-bar',
-  imports: [],
   templateUrl: './search-bar.component.html',
-  styleUrl: './search-bar.component.css'
+  styleUrls: ['./search-bar.component.scss']
 })
 export class SearchBarComponent {
+  searchQuery = ''
 
+  constructor (private taskService: TaskService) {}
+
+  onSearch (): void {
+    this.taskService.searchTasks(this.searchQuery)
+  }
+
+  clearSearch (): void {
+    this.searchQuery = ''
+    this.taskService.searchTasks('')
+  }
 }

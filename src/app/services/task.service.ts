@@ -6,6 +6,8 @@ import { Task } from '../models/task.model'
   providedIn: 'root'
 })
 export class TaskService {
+  // Mock data for tasks
+  // When you clone the project, you can replace this with a real API call
   private tasks: Task[] = [
     {
       id: '1',
