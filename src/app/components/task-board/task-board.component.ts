@@ -8,12 +8,14 @@ import {
 import { Task } from '../../models/task.model'
 import { TaskService } from '../../services/task.service'
 import { NgFor, NgIf } from '@angular/common'
+import { TaskCardComponent } from '../task-card/task-card.component'
+import { DragDropModule } from '@angular/cdk/drag-drop'
 
 @Component({
   selector: 'app-task-board',
   templateUrl: './task-board.component.html',
   styleUrls: ['./task-board.component.scss'],
-  imports: [NgFor, NgIf]
+  imports: [NgFor, NgIf, TaskCardComponent, DragDropModule]
 })
 export class TaskBoardComponent implements OnInit {
   notStartedTasks: Task[] = []
