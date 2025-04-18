@@ -1,16 +1,19 @@
 import { Component, OnInit } from '@angular/core'
 import {
   CdkDragDrop,
+  CdkDropListGroup,
   moveItemInArray,
   transferArrayItem
 } from '@angular/cdk/drag-drop'
 import { Task } from '../../models/task.model'
 import { TaskService } from '../../services/task.service'
+import { NgFor, NgIf } from '@angular/common'
 
 @Component({
   selector: 'app-task-board',
   templateUrl: './task-board.component.html',
-  styleUrls: ['./task-board.component.scss']
+  styleUrls: ['./task-board.component.scss'],
+  imports: [NgFor, NgIf]
 })
 export class TaskBoardComponent implements OnInit {
   notStartedTasks: Task[] = []

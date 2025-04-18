@@ -1,1 +1,88 @@
-<p>task-board works!</p>
+<div class="task-board">
+  <div class="board-column">
+    <div class="column-header not-started">
+      <h2>Not Started</h2>
+      <span class="task-count">{{ notStartedTasks.length }}</span>
+    </div>
+    <div
+      class="task-list"
+      id="not-started-list"
+      cdkDropList
+      [cdkDropListData]="notStartedTasks"
+      [cdkDropListConnectedTo]="['ongoing-list', 'completed-list']"
+      (cdkDropListDropped)="drop($event)"
+    >
+      <app-task-card
+        *ngFor="let task of notStartedTasks"
+        [task]="task"
+        cdkDrag
+        [cdkDragData]="task"
+        (deleteTaskEvent)="deleteTask($event)"
+      >
+        <div class="custom-placeholder" *cdkDragPlaceholder></div>
+      </app-task-card>
+
+      <div class="empty-message" *ngIf="notStartedTasks.length === 0">
+        No tasks yet
+      </div>
+    </div>
+  </div>
+
+  <div class="board-column">
+    <div class="column-header ongoing">
+      <h2>Ongoing</h2>
+      <span class="task-count">{{ ongoingTasks.length }}</span>
+    </div>
+    <div
+      class="task-list"
+      id="ongoing-list"
+      cdkDropList
+      [cdkDropListData]="ongoingTasks"
+      [cdkDropListConnectedTo]="['not-started-list', 'completed-list']"
+      (cdkDropListDropped)="drop($event)"
+    >
+      <app-task-card
+        *ngFor="let task of ongoingTasks"
+        [task]="task"
+        cdkDrag
+        [cdkDragData]="task"
+        (deleteTaskEvent)="deleteTask($event)"
+      >
+        <div class="custom-placeholder" *cdkDragPlaceholder></div>
+      </app-task-card>
+
+      <div class="empty-message" *ngIf="ongoingTasks.length === 0">
+        No tasks in progress
+      </div>
+    </div>
+  </div>
+
+  <div class="board-column">
+    <div class="column-header completed">
+      <h2>Completed</h2>
+      <span class="task-count">{{ completedTasks.length }}</span>
+    </div>
+    <div
+      class="task-list"
+      id="completed-list"
+      cdkDropList
+      [cdkDropListData]="completedTasks"
+      [cdkDropListConnectedTo]="['not-started-list', 'ongoing-list']"
+      (cdkDropListDropped)="drop($event)"
+    >
+      <app-task-card
+        *ngFor="let task of completedTasks"
+        [task]="task"
+        cdkDrag
+        [cdkDragData]="task"
+        (deleteTaskEvent)="deleteTask($event)"
+      >
+        <div class="custom-placeholder" *cdkDragPlaceholder></div>
+      </app-task-card>
+
+      <div class="empty-message" *ngIf="completedTasks.length === 0">
+        No completed tasks
+      </div>
+    </div>
+  </div>
+</div>
