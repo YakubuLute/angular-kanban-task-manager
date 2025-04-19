@@ -1,79 +1,93 @@
 <div class="add-task-container">
-  <button class="add-task-button" (click)="toggleForm()" *ngIf="!showForm">
+  <button class="add-task-button" (click)="openModal()">
     <i class="material-icons">add</i>
     Add New Task
   </button>
+</div>
 
-  <div class="task-form" *ngIf="showForm">
-    <h3>Create New Task</h3>
-
-    <div class="form-group">
-      <label for="title">Title</label>
-      <input
-        type="text"
-        id="title"
-        [(ngModel)]="newTask.title"
-        placeholder="Task title"
-        required
-      />
+<!-- Modal -->
+<div
+  class="modal-backdrop"
+  *ngIf="isModalOpen"
+  (click)="onBackdropClick($event)"
+>
+  <div class="modal-container" (click)="onModalContentClick($event)">
+    <div class="modal-header">
+      <h3>Create New Task</h3>
+      <button class="close-button" (click)="closeModal()">
+        <i class="material-icons">close</i>
+      </button>
     </div>
 
-    <div class="form-group">
-      <label for="description">Description</label>
-      <textarea
-        id="description"
-        [(ngModel)]="newTask.description"
-        placeholder="Task description"
-        rows="3"
-      ></textarea>
-    </div>
-
-    <div class="form-row">
+    <div class="modal-body">
       <div class="form-group">
-        <label for="priority">Priority</label>
-        <select id="priority" [(ngModel)]="newTask.priority">
-          <option value="low">Low</option>
-          <option value="medium">Medium</option>
-          <option value="high">High</option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label for="status">Status</label>
-        <select id="status" [(ngModel)]="newTask.status">
-          <option value="Not Started">Not Started</option>
-          <option value="Ongoing">Ongoing</option>
-          <option value="Completed">Completed</option>
-        </select>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label for="dueDate">Due Date (Optional)</label>
-      <input type="date" id="dueDate" [(ngModel)]="newTask.dueDate" />
-    </div>
-
-    <div class="form-group">
-      <label>Tags</label>
-      <div class="tag-input-container">
+        <label for="title">Title</label>
         <input
           type="text"
-          [(ngModel)]="tagInput"
-          placeholder="Add a tag"
-          (keyup.enter)="addTag()"
+          id="title"
+          [(ngModel)]="newTask.title"
+          placeholder="Task title"
+          required
         />
-        <button class="add-tag-button" (click)="addTag()">Add</button>
       </div>
-      <div class="tags-list" *ngIf="newTask.tags?.length">
-        <span class="tag" *ngFor="let tag of newTask.tags">
-          {{ tag }}
-          <button class="remove-tag" (click)="removeTag(tag)">×</button>
-        </span>
+
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea
+          id="description"
+          [(ngModel)]="newTask.description"
+          placeholder="Task description"
+          rows="3"
+        ></textarea>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="priority">Priority</label>
+          <select id="priority" [(ngModel)]="newTask.priority">
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="status">Status</label>
+          <select id="status" [(ngModel)]="newTask.status">
+            <option value="Not Started">Not Started</option>
+            <option value="Ongoing">Ongoing</option>
+            <option value="Completed">Completed</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="dueDate">Due Date (Optional)</label>
+        <input type="date" id="dueDate" [(ngModel)]="newTask.dueDate" />
+      </div>
+
+      <div class="form-group">
+        <label>Tags</label>
+        <div class="tag-input-container">
+          <input
+            type="text"
+            [(ngModel)]="tagInput"
+            placeholder="Add a tag"
+            (keyup.enter)="addTag()"
+          />
+          <button class="add-tag-button" (click)="addTag()">Add</button>
+        </div>
+        <div class="tags-list" *ngIf="newTask.tags?.length">
+          <span class="tag" *ngFor="let tag of newTask.tags">
+            {{ tag }}
+            <button class="remove-tag" (click)="removeTag(tag)">×</button>
+          </span>
+        </div>
       </div>
     </div>
 
-    <div class="form-actions">
-      <button class="cancel-button" (click)="toggleForm()">Cancel</button>
+    <div class="modal-footer">
+      <button class="cancel-button" (click)="closeModal()">Cancel</button>
       <button
         class="submit-button"
         (click)="submitTask()"
