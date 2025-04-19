@@ -1,20 +1,14 @@
-import { Component, NgModule } from '@angular/core'
+import { Component } from '@angular/core'
 import { Task } from '../../models/task.model'
 import { TaskService } from '../../services/task.service'
-import { FormsModule } from '@angular/forms'
-import { NgIf, NgFor } from '@angular/common'
-
-
-
 
 @Component({
   selector: 'app-add-task',
   templateUrl: './add-task.component.html',
-  imports: [ FormsModule, NgIf, NgFor],
   styleUrls: ['./add-task.component.scss']
 })
 export class AddTaskComponent {
-  showForm = false
+  isModalOpen = false
   newTask: Task = {
     id: '',
     title: '',
@@ -28,11 +22,16 @@ export class AddTaskComponent {
 
   constructor (private taskService: TaskService) {}
 
-  toggleForm (): void {
-    this.showForm = !this.showForm
-    if (!this.showForm) {
-      this.resetForm()
-    }
+  openModal (): void {
+    this.isModalOpen = true
+    // Prevent background scrolling when modal is open
+    document.body.style.overflow = 'hidden'
+  }
+
+  closeModal (): void {
+    this.isModalOpen = false
+    document.body.style.overflow = 'auto'
+    this.resetForm()
   }
 
   resetForm (): void {
@@ -79,6 +78,19 @@ export class AddTaskComponent {
     }
 
     this.taskService.addTask(task)
-    this.toggleForm()
+    this.closeModal()
+  }
+
+  // Handle clicks on the modal backdrop
+  onBackdropClick (event: MouseEvent): void {
+    // Check if the click was directly on the backdrop (not on the modal content)
+    if ((event.target as HTMLElement).classList.contains('modal-backdrop')) {
+      this.closeModal()
+    }
+  }
+
+  // Prevent event propagation for clicks on the modal content
+  onModalContentClick (event: Event): void {
+    event.stopPropagation()
   }
 }
