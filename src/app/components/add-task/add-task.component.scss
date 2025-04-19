@@ -6,7 +6,7 @@
     align-items: center;
     justify-content: center;
     gap: 8px;
-    background-color: #7c4dff;
+    background-color: var(--primary-color, #7c4dff);
     color: white;
     border: none;
     border-radius: 24px;
@@ -18,7 +18,7 @@
     width: 100%;
 
     &:hover {
-      background-color: #6c3eef;
+      background-color: var(--primary-dark, #6c3eef);
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
@@ -26,147 +26,236 @@
       font-size: 20px;
     }
   }
+}
 
-  .task-form {
-    background-color: white;
-    border-radius: 12px;
-    padding: 24px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+// Modal styles
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 20px;
+  overflow-y: auto;
+  animation: fadeIn 0.2s ease-out;
+}
 
-    h3 {
-      margin-top: 0;
-      margin-bottom: 20px;
-      font-size: 20px;
-      font-weight: 600;
+.modal-container {
+  background-color: white;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+  animation: slideIn 0.3s ease-out;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border-color, #e0e0e0);
+
+  h3 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+  }
+
+  .close-button {
+    background: none;
+    border: none;
+    color: #888;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    border-radius: 50%;
+    transition: all 0.2s;
+
+    &:hover {
+      background-color: #f1f1f1;
+      color: #555;
     }
 
-    .form-group {
-      margin-bottom: 16px;
+    i {
+      font-size: 24px;
+    }
+  }
+}
 
-      label {
-        display: block;
-        margin-bottom: 6px;
-        font-weight: 500;
-        font-size: 14px;
-        color: #555;
+.modal-body {
+  padding: 20px;
+
+  .form-group {
+    margin-bottom: 16px;
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 500;
+      font-size: 14px;
+      color: #555;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 14px;
+
+      &:focus {
+        outline: none;
+        border-color: var(--primary-color, #7c4dff);
+        box-shadow: 0 0 0 2px rgba(124, 77, 255, 0.2);
       }
+    }
+  }
 
-      input, textarea, select {
-        width: 100%;
-        padding: 10px 12px;
-        border: 1px solid #ddd;
-        border-radius: 6px;
-        font-size: 14px;
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
 
-        &:focus {
-          outline: none;
-          border-color: #7c4dff;
-          box-shadow: 0 0 0 2px rgba(124, 77, 255, 0.2);
-        }
+  .tag-input-container {
+    display: flex;
+    gap: 8px;
+
+    input {
+      flex: 1;
+    }
+
+    .add-tag-button {
+      background-color: #f1f1f1;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #e0e0e0;
       }
     }
+  }
 
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-    }
+  .tags-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
 
-    .tag-input-container {
+    .tag {
+      background-color: #f1f1f1;
+      color: #555;
+      padding: 6px 10px;
+      border-radius: 16px;
+      font-size: 12px;
       display: flex;
-      gap: 8px;
+      align-items: center;
+      gap: 6px;
 
-      input {
-        flex: 1;
-      }
-
-      .add-tag-button {
-        background-color: #f1f1f1;
+      .remove-tag {
+        background: none;
         border: none;
-        padding: 8px 16px;
-        border-radius: 6px;
+        color: #888;
+        font-size: 16px;
         cursor: pointer;
-
-        &:hover {
-          background-color: #e0e0e0;
-        }
-      }
-    }
-
-    .tags-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 12px;
-
-      .tag {
-        background-color: #f1f1f1;
-        color: #555;
-        padding: 6px 10px;
-        border-radius: 16px;
-        font-size: 12px;
+        padding: 0;
         display: flex;
         align-items: center;
-        gap: 6px;
+        justify-content: center;
+        width: 16px;
+        height: 16px;
 
-        .remove-tag {
-          background: none;
-          border: none;
-          color: #888;
-          font-size: 16px;
-          cursor: pointer;
-          padding: 0;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          width: 16px;
-          height: 16px;
-
-          &:hover {
-            color: #555;
-          }
+        &:hover {
+          color: #555;
         }
       }
     }
+  }
+}
 
-    .form-actions {
-      display: flex;
-      justify-content: flex-end;
-      gap: 12px;
-      margin-top: 24px;
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 16px 20px;
+  border-top: 1px solid var(--border-color, #e0e0e0);
 
-      button {
-        padding: 10px 20px;
-        border-radius: 6px;
-        font-weight: 500;
-        cursor: pointer;
-        transition: all 0.2s ease;
-      }
+  button {
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
 
-      .cancel-button {
-        background-color: transparent;
-        border: 1px solid #ddd;
-        color: #555;
+  .cancel-button {
+    background-color: transparent;
+    border: 1px solid #ddd;
+    color: #555;
 
-        &:hover {
-          background-color: #f1f1f1;
-        }
-      }
-
-      .submit-button {
-        background-color: #7c4dff;
-        border: none;
-        color: white;
-
-        &:hover {
-          background-color: #6c3eef;
-        }
-
-        &:disabled {
-          background-color: #c8c8c8;
-          cursor: not-allowed;
-        }
-      }
+    &:hover {
+      background-color: #f1f1f1;
     }
+  }
+
+  .submit-button {
+    background-color: var(--primary-color, #7c4dff);
+    border: none;
+    color: white;
+
+    &:hover {
+      background-color: var(--primary-dark, #6c3eef);
+    }
+
+    &:disabled {
+      background-color: #c8c8c8;
+      cursor: not-allowed;
+    }
+  }
+}
+
+// Animations
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 640px) {
+  .form-row {
+    grid-template-columns: 1fr !important;
+  }
+
+  .modal-container {
+    max-height: 80vh;
   }
 }
