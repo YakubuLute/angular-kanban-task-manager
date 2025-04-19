@@ -1,11 +1,14 @@
 import { Component } from '@angular/core'
 import { Task } from '../../models/task.model'
 import { TaskService } from '../../services/task.service'
+import { NgFor, NgIf } from '@angular/common'
+import { FormsModule } from '@angular/forms'
 
 @Component({
   selector: 'app-add-task',
   templateUrl: './add-task.component.html',
-  styleUrls: ['./add-task.component.scss']
+  styleUrls: ['./add-task.component.scss'],
+  imports: [NgIf, NgFor, FormsModule]
 })
 export class AddTaskComponent {
   isModalOpen = false
