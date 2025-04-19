@@ -14,9 +14,14 @@
 - **Responsive Design** that works on desktop and mobile devices
 - **Modern UI** with clean visuals and smooth animations
 
-## 🚀 Live Demo
+## 🚀 SCREENSHOTS
 
-[View Live Demo](#) *(coming soon)*
+1. ![Landing Page](src/assets/images/image.png)
+2. ![Add Task](src/assets/images/add-todo.png)
+3. ![After Adding Task](src/assets/images/after-adding.png)
+4. ![After Dragging](src/assets/images/after-dragging.png)
+5. ![After Searching Task](src/assets/images/search-task.png)
+
 
 ## 🛠️ Technology Stack
 
