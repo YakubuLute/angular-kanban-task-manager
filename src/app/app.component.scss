@@ -1,0 +1,56 @@
+:host {
+  font-family: "Roboto", "Segoe UI", sans-serif;
+  --primary-color: #7c4dff;
+  --primary-dark: #6c3eef;
+  --background-color: #f8f9fd;
+  --card-background: #ffffff;
+  --text-color: #333;
+  --border-color: #e0e0e0;
+  --success-color: #66bb6a;
+  --warning-color: #ffa726;
+  --danger-color: #ff5252;
+}
+
+.app-container {
+  min-height: 100vh;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+.app-header {
+  background-color: var(--card-background);
+  padding: 16px 0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+
+  .header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .app-title {
+      margin: 0;
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--primary-color);
+      letter-spacing: -0.5px;
+    }
+  }
+}
+
+.app-main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+
+
+footer {
+  display: none;
+}
