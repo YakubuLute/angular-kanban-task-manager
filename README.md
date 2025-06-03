@@ -4,7 +4,7 @@
 
 > A slick, modern task management application with intuitive drag-and-drop functionality built with Angular.
 
-## ✨ Features
+## Features
 
 - **Intuitive Kanban-style Board** with three status columns (Not Started, Ongoing, Completed)
 - **Drag & Drop Tasks** between status columns with smooth animations
@@ -207,10 +207,3 @@ Contributions are welcome! Feel free to open an issue or submit a pull request.
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgements
-
-- [Angular](https://angular.io/)
-- [Angular Material CDK](https://material.angular.io/cdk/categories)
-- [Material Icons](https://material.io/resources/icons/)
-- [RxJS](https://rxjs.dev/)
