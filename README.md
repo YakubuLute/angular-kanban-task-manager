@@ -14,7 +14,7 @@
 - **Responsive Design** that works on desktop and mobile devices
 - **Modern UI** with clean visuals and smooth animations
 
-## 🚀 SCREENSHOTS
+## SCREENSHOTS
 
 1. ![Landing Page](src/assets/images/image.png)
 2. ![Add Task](src/assets/images/add-todo.png)
@@ -23,7 +23,7 @@
 5. ![After Searching Task](src/assets/images/search-task.png)
 
 
-## 🛠️ Technology Stack
+##  Technology Stack
 
 - Angular 16+
 - Angular CDK (Drag & Drop)
@@ -31,12 +31,12 @@
 - SCSS
 - RxJS for state management
 
-## 📋 Prerequisites
+## Prerequisites
 
 - Node.js (v14+)
 - npm (v6+) or yarn (v1.22+)
 
-## 📥 Installation & Setup
+## Installation & Setup
 
 1. Clone the repository:
    ```bash
@@ -61,7 +61,7 @@
    http://localhost:4200/
    ```
 
-## 📂 Project Structure
+## Project Structure
 
 ```
 task-management/
@@ -82,7 +82,7 @@ task-management/
 │   └── styles.scss                 # Global styles
 ```
 
-## 🔧 Core Components
+## Core Components
 
 ### Task Model
 
@@ -125,7 +125,7 @@ Displays individual tasks with:
 - Tags
 - Action buttons (edit, delete)
 
-## 🎯 Core Functionality
+## Core Functionality
 
 ### Drag and Drop
 
@@ -176,7 +176,7 @@ searchTasks(query: string): void {
 }
 ```
 
-## 📱 Responsive Design
+## Responsive Design
 
 The application is fully responsive and works on devices of all sizes:
 
@@ -184,7 +184,7 @@ The application is fully responsive and works on devices of all sizes:
 - **Tablet:** Two columns with scrolling
 - **Mobile:** Single column view with full functionality
 
-## 🔮 Future Enhancements
+## Future Enhancements
 
 - [ ] User authentication and personalized task lists
 - [ ] Task due date notifications
@@ -194,7 +194,7 @@ The application is fully responsive and works on devices of all sizes:
 - [ ] Dark mode
 - [ ] Export/import tasks
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Feel free to open an issue or submit a pull request.
 
@@ -204,7 +204,7 @@ Contributions are welcome! Feel free to open an issue or submit a pull request.
 4. Push to the branch: `git push origin feature/amazing-feature`
 5. Open a pull request
 
-## 📜 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
