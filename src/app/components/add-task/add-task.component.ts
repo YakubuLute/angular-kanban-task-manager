@@ -96,4 +96,13 @@ export class AddTaskComponent {
   onModalContentClick (event: Event): void {
     event.stopPropagation()
   }
+
+  // Convert input date string back to Date object
+  onDateChange (event: any): void {
+    if (event.target.value) {
+      this.newTask.dueDate = new Date(event.target.value)
+    } else {
+      this.newTask.dueDate = undefined
+    }
+  }
 }

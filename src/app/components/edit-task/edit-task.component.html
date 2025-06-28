@@ -52,7 +52,12 @@
 
       <div class="form-group">
         <label for="dueDate">Due Date (Optional)</label>
-        <input type="date" id="dueDate" [(ngModel)]="editedTask.dueDate" />
+        <input
+          type="date"
+          id="dueDate"
+          [value]="formatDateForInput(editedTask.dueDate)"
+          (change)="onDateChange($event)"
+        />
       </div>
 
       <div class="form-group">

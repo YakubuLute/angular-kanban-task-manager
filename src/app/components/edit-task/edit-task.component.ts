@@ -1,4 +1,4 @@
-import { Component } from '@angular/core'
+import { Component, OnInit } from '@angular/core'
 import { Task } from '../../models/task.model'
 import { TaskService } from '../../services/task.service'
 import { FormsModule } from '@angular/forms'
@@ -10,7 +10,7 @@ import { NgFor, NgIf } from '@angular/common'
   styleUrl: './edit-task.component.scss',
   imports: [NgIf, NgFor, FormsModule]
 })
-export class EditTaskComponent {
+export class EditTaskComponent implements OnInit {
   isModalOpen = true
 
   editedTask: Task = {
@@ -36,6 +36,7 @@ export class EditTaskComponent {
 
   closeModal (): void {
     this.isModalOpen = false
+    this.taskService.closeEditTaskModal()
     document.body.style.overflow = 'auto'
     this.resetForm()
   }
@@ -98,5 +99,33 @@ export class EditTaskComponent {
   // Prevent event propagation for clicks on the modal content
   onModalContentClick (event: Event): void {
     event.stopPropagation()
+  }
+
+  // Format date for input field (YYYY-MM-DD)
+  formatDateForInput (date: Date | undefined): string {
+    if (!date) return ''
+    const d = new Date(date)
+    const year = d.getFullYear()
+    const month = String(d.getMonth() + 1).padStart(2, '0')
+    const day = String(d.getDate()).padStart(2, '0')
+    return `${year}-${month}-${day}`
+  }
+
+  // Convert input date string back to Date object
+  onDateChange (event: any): void {
+    if (event.target.value) {
+      this.editedTask.dueDate = new Date(event.target.value)
+    } else {
+      this.editedTask.dueDate = undefined
+    }
+  }
+
+  ngOnInit (): void {
+    this.taskService.getTasks().subscribe(tasks => {
+      if (tasks.length > 0) {
+        console.log('Task is greater than 0', tasks)
+        this.editedTask = { ...tasks[0] }
+      }
+    })
   }
 }
