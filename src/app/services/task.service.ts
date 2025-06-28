@@ -52,6 +52,11 @@ export class TaskService {
     this.tasksSubject.next(this.tasks)
   }
 
+  getTaskById (id: string): Task | undefined {
+    return this.tasks.find(task => task.id === id)
+  }
+
+
   updateTask (updatedTask: Task): void {
     this.tasks = this.tasks.map(task =>
       task.id === updatedTask.id ? updatedTask : task
