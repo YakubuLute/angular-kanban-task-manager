@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core'
 import { Task } from '../../models/task.model'
 import { NgFor, NgIf } from '@angular/common'
+import { TaskService } from '../../services/task.service'
 
 @Component({
   selector: 'app-task-card',
@@ -11,6 +12,12 @@ import { NgFor, NgIf } from '@angular/common'
 export class TaskCardComponent {
   @Input() task!: Task
   @Output() deleteTaskEvent = new EventEmitter<string>()
+
+  constructor (private taskService: TaskService) {}
+
+  openEditModal (task: Task): void {
+    this.taskService.openEditTaskModal(task)
+  }
 
   getPriorityClass (): string {
     switch (this.task.priority) {

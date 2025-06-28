@@ -6,8 +6,8 @@ import { Task } from '../models/task.model'
   providedIn: 'root'
 })
 export class TaskService {
-  // Mock data for tasks
-  // When you clone the project, you can replace this with a real API call
+  private openEditTaskModalSubject = new BehaviorSubject<boolean>(false)
+
   private tasks: Task[] = [
     {
       id: '1',
@@ -47,6 +47,15 @@ export class TaskService {
     return this.tasksSubject.asObservable()
   }
 
+  getOpenEditTaskModal (): boolean {
+    return this.openEditTaskModalSubject.getValue()
+  }
+
+  openEditTaskModal (task: Task): void {
+    this.updateTask(task)
+    this.openEditTaskModalSubject.next(true)
+  }
+
   addTask (task: Task): void {
     this.tasks = [...this.tasks, task]
     this.tasksSubject.next(this.tasks)
@@ -55,7 +64,6 @@ export class TaskService {
   getTaskById (id: string): Task | undefined {
     return this.tasks.find(task => task.id === id)
   }
-
 
   updateTask (updatedTask: Task): void {
     this.tasks = this.tasks.map(task =>

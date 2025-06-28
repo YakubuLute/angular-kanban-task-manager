@@ -2,10 +2,10 @@
   <div class="task-header">
     <h3 class="task-title">{{ task.title }}</h3>
     <div class="task-actions">
-      <button class="icon-button edit">
+      <button type="button" class="icon-button edit" (click)="openEditModal(task)">
         <i class="material-icons">edit</i>
       </button>
-      <button class="icon-button delete" (click)="deleteTask()">
+      <button type="button" class="icon-button delete" (click)="deleteTask()">
         <i class="material-icons">delete</i>
       </button>
     </div>
