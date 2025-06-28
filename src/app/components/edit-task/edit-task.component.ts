@@ -29,14 +29,13 @@ export class EditTaskComponent implements OnInit {
   }
 
   openModal (): void {
-    this.isModalOpen = true
-    // Prevent background scrolling when modal is open
+    this.taskService.setEditModal(true)
     document.body.style.overflow = 'hidden'
   }
 
   closeModal (): void {
-    this.isModalOpen = false
-    this.taskService.closeEditTaskModal()
+    // this.isModalOpen = false
+    this.taskService.setEditModal(false)
     document.body.style.overflow = 'auto'
     this.resetForm()
   }

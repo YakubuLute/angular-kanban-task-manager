@@ -56,8 +56,8 @@ export class TaskService {
     this.openEditTaskModalSubject.next(true)
   }
 
-  closeEditTaskModal (): void {
-    this.openEditTaskModalSubject.next(false)
+  setEditModal (state: boolean): void {
+    this.openEditTaskModalSubject.next(state)
   }
 
   addTask (task: Task): void {

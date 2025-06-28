@@ -1,5 +1,9 @@
 <!-- Modal -->
-<div class="modal-backdrop" *ngIf="true" (click)="onBackdropClick($event)">
+<div
+  class="modal-backdrop"
+  *ngIf="isModalOpen"
+  (click)="onBackdropClick($event)"
+>
   <div class="modal-container" (click)="onModalContentClick($event)">
     <div class="modal-header">
       <h3>Edit Task</h3>
