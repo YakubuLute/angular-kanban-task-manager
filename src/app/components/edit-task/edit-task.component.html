@@ -12,7 +12,7 @@
       </button>
     </div>
 
-    <div class="modal-body">
+    <div class="modal-body" *ngIf="editedTask">
       <div class="form-group">
         <label for="title">Title</label>
         <input
@@ -59,7 +59,7 @@
         <input
           type="date"
           id="dueDate"
-          [value]="formatDateForInput(editedTask.dueDate)"
+          [value]="formatDateForInput(editedTask?.dueDate)"
           (change)="onDateChange($event)"
         />
       </div>
@@ -75,8 +75,8 @@
           />
           <button class="add-tag-button" (click)="addTag()">Add</button>
         </div>
-        <div class="tags-list" *ngIf="editedTask.tags?.length">
-          <span class="tag" *ngFor="let tag of editedTask.tags">
+        <div class="tags-list" *ngIf="editedTask?.tags?.length">
+          <span class="tag" *ngFor="let tag of editedTask?.tags">
             {{ tag }}
             <button class="remove-tag" (click)="removeTag(tag)">×</button>
           </span>
@@ -87,11 +87,12 @@
     <div class="modal-footer">
       <button class="cancel-button" (click)="closeModal()">Cancel</button>
       <button
+        type="button"
         class="submit-button"
         (click)="submitTask()"
-        [disabled]="!editedTask.title.trim()"
+        [disabled]="!editedTask?.title?.trim()"
       >
-        Create Task
+        Save Task
       </button>
     </div>
   </div>

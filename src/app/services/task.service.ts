@@ -6,8 +6,6 @@ import { Task } from '../models/task.model'
   providedIn: 'root'
 })
 export class TaskService {
-  private openEditTaskModalSubject = new BehaviorSubject<boolean>(false)
-
   private tasks: Task[] = [
     {
       id: '1',
@@ -38,6 +36,11 @@ export class TaskService {
       tags: ['Design', 'UI/UX']
     }
   ]
+  private openEditTaskModalSubject = new BehaviorSubject<boolean>(false)
+  openEditTaskModal$ = this.openEditTaskModalSubject.asObservable()
+
+  private selectedTaskSubject = new BehaviorSubject<Task | null>(null)
+  selectedTask$ = this.selectedTaskSubject.asObservable()
 
   private tasksSubject = new BehaviorSubject<Task[]>(this.tasks)
 
@@ -47,17 +50,14 @@ export class TaskService {
     return this.tasksSubject.asObservable()
   }
 
-  getOpenEditTaskModal (): boolean {
-    return this.openEditTaskModalSubject.getValue()
-  }
-
   openEditTaskModal (task: Task): void {
-    this.updateTask(task)
+    this.selectedTaskSubject.next(task)
     this.openEditTaskModalSubject.next(true)
   }
 
-  setEditModal (state: boolean): void {
-    this.openEditTaskModalSubject.next(state)
+  closeEditTaskModal (): void {
+    this.openEditTaskModalSubject.next(false)
+    this.selectedTaskSubject.next(null)
   }
 
   addTask (task: Task): void {
