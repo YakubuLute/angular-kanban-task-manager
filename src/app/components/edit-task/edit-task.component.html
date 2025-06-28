@@ -1,12 +1,8 @@
 <!-- Modal -->
-<div
-  class="modal-backdrop"
-  *ngIf="isModalOpen"
-  (click)="onBackdropClick($event)"
->
+<div class="modal-backdrop" *ngIf="true" (click)="onBackdropClick($event)">
   <div class="modal-container" (click)="onModalContentClick($event)">
     <div class="modal-header">
-      <h3>Create New Task</h3>
+      <h3>Edit Task</h3>
       <button type="button" class="close-button" (click)="closeModal()">
         <i class="material-icons">close</i>
       </button>
@@ -18,7 +14,7 @@
         <input
           type="text"
           id="title"
-          [(ngModel)]="newTask.title"
+          [(ngModel)]="editedTask.title"
           placeholder="Task title"
           required
         />
@@ -28,7 +24,7 @@
         <label for="description">Description</label>
         <textarea
           id="description"
-          [(ngModel)]="newTask.description"
+          [(ngModel)]="editedTask.description"
           placeholder="Task description"
           rows="3"
         ></textarea>
@@ -37,7 +33,7 @@
       <div class="form-row">
         <div class="form-group">
           <label for="priority">Priority</label>
-          <select id="priority" [(ngModel)]="newTask.priority">
+          <select id="priority" [(ngModel)]="editedTask.priority">
             <option value="low">Low</option>
             <option value="medium">Medium</option>
             <option value="high">High</option>
@@ -46,7 +42,7 @@
 
         <div class="form-group">
           <label for="status">Status</label>
-          <select id="status" [(ngModel)]="newTask.status">
+          <select id="status" [(ngModel)]="editedTask.status">
             <option value="Not Started">Not Started</option>
             <option value="Ongoing">Ongoing</option>
             <option value="Completed">Completed</option>
@@ -56,7 +52,7 @@
 
       <div class="form-group">
         <label for="dueDate">Due Date (Optional)</label>
-        <input type="date" id="dueDate" [(ngModel)]="newTask.dueDate" />
+        <input type="date" id="dueDate" [(ngModel)]="editedTask.dueDate" />
       </div>
 
       <div class="form-group">
@@ -70,8 +66,8 @@
           />
           <button class="add-tag-button" (click)="addTag()">Add</button>
         </div>
-        <div class="tags-list" *ngIf="newTask.tags?.length">
-          <span class="tag" *ngFor="let tag of newTask.tags">
+        <div class="tags-list" *ngIf="editedTask.tags?.length">
+          <span class="tag" *ngFor="let tag of editedTask.tags">
             {{ tag }}
             <button class="remove-tag" (click)="removeTag(tag)">×</button>
           </span>
@@ -84,7 +80,7 @@
       <button
         class="submit-button"
         (click)="submitTask()"
-        [disabled]="!newTask.title.trim()"
+        [disabled]="!editedTask.title.trim()"
       >
         Create Task
       </button>

@@ -7,14 +7,13 @@ import { NgFor, NgIf } from '@angular/common'
 @Component({
   selector: 'app-edit-task',
   templateUrl: './edit-task.component.html',
-  styleUrl: './edit-task.component.css',
+  styleUrl: './edit-task.component.scss',
   imports: [NgIf, NgFor, FormsModule]
 })
 export class EditTaskComponent {
-  isModalOpen = false
+  isModalOpen = true
 
-  
-  newTask: Task = {
+  editedTask: Task = {
     id: '',
     title: '',
     description: '',
@@ -25,7 +24,9 @@ export class EditTaskComponent {
   }
   tagInput = ''
 
-  constructor (private taskService: TaskService) {}
+  constructor (private taskService: TaskService) {
+    this.isModalOpen = this.taskService.getOpenEditTaskModal()
+  }
 
   openModal (): void {
     this.isModalOpen = true
@@ -40,7 +41,7 @@ export class EditTaskComponent {
   }
 
   resetForm (): void {
-    this.newTask = {
+    this.editedTask = {
       id: '',
       title: '',
       description: '',
@@ -55,29 +56,29 @@ export class EditTaskComponent {
   addTag (): void {
     if (
       this.tagInput.trim() &&
-      !this.newTask.tags?.includes(this.tagInput.trim())
+      !this.editedTask.tags?.includes(this.tagInput.trim())
     ) {
-      if (!this.newTask.tags) {
-        this.newTask.tags = []
+      if (!this.editedTask.tags) {
+        this.editedTask.tags = []
       }
-      this.newTask.tags.push(this.tagInput.trim())
+      this.editedTask.tags.push(this.tagInput.trim())
       this.tagInput = ''
     }
   }
 
   removeTag (tag: string): void {
-    if (this.newTask.tags) {
-      this.newTask.tags = this.newTask.tags.filter(t => t !== tag)
+    if (this.editedTask.tags) {
+      this.editedTask.tags = this.editedTask.tags.filter(t => t !== tag)
     }
   }
 
   submitTask (): void {
-    if (!this.newTask.title.trim()) {
+    if (!this.editedTask.title.trim()) {
       return
     }
 
     const task: Task = {
-      ...this.newTask,
+      ...this.editedTask,
       id: Date.now().toString(),
       createdAt: new Date()
     }
